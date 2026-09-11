@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+openpyxl
+python-docx
+python-pptx
+nbformat
+nbclient
+nbconvert
+ipykernel
+unidecode
+scipy
+statsmodels
+reportlab
+joblib

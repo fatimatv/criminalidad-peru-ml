@@ -1,0 +1,3 @@
+dataset,rows,columns,duplicates,encoding,separator,column_names
+denuncias,369100,8,0,utf-8-sig,",","ANIO, MES, DPTO_HECHO_NEW, PROV_HECHO, DIST_HECHO, UBIGEO_HECHO, P_MODALIDADES, cantidad"
+enapres,1592,8,0,latin1,",","VALOR, INDICADOR, CLASIF, PERIODO, VALOR PERIODO, COD_UBICACION, AMBITO_PROY, DEPARTAMENTO"

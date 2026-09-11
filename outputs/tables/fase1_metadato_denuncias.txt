@@ -1,0 +1,19 @@
+METADATOS
+Metadatos del dataset:  Sistema de Denuncias Policiales (SIDPPOL) - [MINISTERIO DEL INTERIOR - MININTER]
+Título | Sistema de Denuncias Policiales (SIDPPOL)
+Título URL Descripción | https://www.datosabiertos.gob.pe/dataset/denuncias-policiales-1
+Descripción | Información sobre las denuncias de los principales delitos sobre homicidios, hurto, robo, extorsión, estafa y violencia contra la mujer e integrantes del grupo familiar. Esta información corresponde a los años 2018 a la fecha de actualización. Información sujeta a variación por ser datos dinámicos.
+Entidad | Ministerio del Interior
+Fuente | Dirección de Tecnología de la Información y Comunicaciones (DIRTIC) de la Policía Nacional del Perú (PNP)
+Etiquetas | Denuncias, delitos, violencia contra la mujer
+Fecha de creación | 2025-07-07, 14:22 (UTC-05:00)
+Frecuencia de actualización | Mensual
+Última actualización | 2026-08-13, 08:09 (UTC-05:00)
+Versión | 0.1
+Licencia | Open Data Commons Attribution License
+Idioma | Español
+Nivel de acceso público | Público
+Tipo de recurso | Dataset
+Formato | CSV
+Cobertura | Hasta nivel distrital
+Correo de contacto | warias@mininter.gob.pe

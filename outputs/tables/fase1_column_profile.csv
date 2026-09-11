@@ -1,0 +1,17 @@
+dataset,column,dtype,nulls,nunique
+denuncias,ANIO,int64,0,9
+denuncias,MES,int64,0,12
+denuncias,DPTO_HECHO_NEW,str,0,26
+denuncias,PROV_HECHO,str,0,196
+denuncias,DIST_HECHO,str,0,1688
+denuncias,UBIGEO_HECHO,int64,0,1839
+denuncias,P_MODALIDADES,str,0,7
+denuncias,cantidad,int64,0,918
+enapres,VALOR,float64,0,537
+enapres,INDICADOR,str,0,5
+enapres,CLASIF,int64,0,27
+enapres,PERIODO,str,0,1
+enapres,VALOR PERIODO,int64,0,12
+enapres,COD_UBICACION,int64,0,28
+enapres,AMBITO_PROY,str,0,2
+enapres,DEPARTAMENTO,str,0,27

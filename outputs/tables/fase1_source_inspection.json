@@ -1,0 +1,396 @@
+{
+  "profiles": {
+    "denuncias": {
+      "dataset": "denuncias",
+      "path": "C:\\Users\\Iriarte 06\\OneDrive\\Documentos\\ChatGPT\\Parcial Criminalidad\\criminalidad-peru-ml\\data\\raw\\denuncias_policiales_2018_2026_julio.csv",
+      "encoding": "utf-8-sig",
+      "separator": ",",
+      "rows": 369100,
+      "columns": 8,
+      "duplicates": 0,
+      "columns_list": [
+        "ANIO",
+        "MES",
+        "DPTO_HECHO_NEW",
+        "PROV_HECHO",
+        "DIST_HECHO",
+        "UBIGEO_HECHO",
+        "P_MODALIDADES",
+        "cantidad"
+      ],
+      "dtypes": {
+        "ANIO": "int64",
+        "MES": "int64",
+        "DPTO_HECHO_NEW": "str",
+        "PROV_HECHO": "str",
+        "DIST_HECHO": "str",
+        "UBIGEO_HECHO": "int64",
+        "P_MODALIDADES": "str",
+        "cantidad": "int64"
+      },
+      "nulls": {
+        "ANIO": 0,
+        "MES": 0,
+        "DPTO_HECHO_NEW": 0,
+        "PROV_HECHO": 0,
+        "DIST_HECHO": 0,
+        "UBIGEO_HECHO": 0,
+        "P_MODALIDADES": 0,
+        "cantidad": 0
+      },
+      "nunique": {
+        "ANIO": 9,
+        "MES": 12,
+        "DPTO_HECHO_NEW": 26,
+        "PROV_HECHO": 196,
+        "DIST_HECHO": 1688,
+        "UBIGEO_HECHO": 1839,
+        "P_MODALIDADES": 7,
+        "cantidad": 918
+      },
+      "sample_rows": [
+        {
+          "ANIO": "2018",
+          "MES": "1",
+          "DPTO_HECHO_NEW": "AMAZONAS",
+          "PROV_HECHO": "BAGUA",
+          "DIST_HECHO": "ARAMANGO",
+          "UBIGEO_HECHO": "10202",
+          "P_MODALIDADES": "Otros",
+          "cantidad": "4"
+        },
+        {
+          "ANIO": "2018",
+          "MES": "1",
+          "DPTO_HECHO_NEW": "AMAZONAS",
+          "PROV_HECHO": "BAGUA",
+          "DIST_HECHO": "ARAMANGO",
+          "UBIGEO_HECHO": "10202",
+          "P_MODALIDADES": "Violencia contra la mujer e integrantes",
+          "cantidad": "3"
+        },
+        {
+          "ANIO": "2018",
+          "MES": "1",
+          "DPTO_HECHO_NEW": "AMAZONAS",
+          "PROV_HECHO": "BAGUA",
+          "DIST_HECHO": "BAGUA",
+          "UBIGEO_HECHO": "10201",
+          "P_MODALIDADES": "Estafa",
+          "cantidad": "2"
+        },
+        {
+          "ANIO": "2018",
+          "MES": "1",
+          "DPTO_HECHO_NEW": "AMAZONAS",
+          "PROV_HECHO": "BAGUA",
+          "DIST_HECHO": "BAGUA",
+          "UBIGEO_HECHO": "10201",
+          "P_MODALIDADES": "Hurto",
+          "cantidad": "25"
+        },
+        {
+          "ANIO": "2018",
+          "MES": "1",
+          "DPTO_HECHO_NEW": "AMAZONAS",
+          "PROV_HECHO": "BAGUA",
+          "DIST_HECHO": "BAGUA",
+          "UBIGEO_HECHO": "10201",
+          "P_MODALIDADES": "Otros",
+          "cantidad": "52"
+        }
+      ]
+    },
+    "enapres": {
+      "dataset": "enapres",
+      "path": "C:\\Users\\Iriarte 06\\OneDrive\\Documentos\\ChatGPT\\Parcial Criminalidad\\criminalidad-peru-ml\\data\\raw\\victimizacion_percepcion_confianza_pnp_2013_2024.csv",
+      "encoding": "latin1",
+      "separator": ",",
+      "rows": 1592,
+      "columns": 8,
+      "duplicates": 0,
+      "columns_list": [
+        "VALOR",
+        "INDICADOR",
+        "CLASIF",
+        "PERIODO",
+        "VALOR PERIODO",
+        "COD_UBICACION",
+        "AMBITO_PROY",
+        "DEPARTAMENTO"
+      ],
+      "dtypes": {
+        "VALOR": "float64",
+        "INDICADOR": "str",
+        "CLASIF": "int64",
+        "PERIODO": "str",
+        "VALOR PERIODO": "int64",
+        "COD_UBICACION": "int64",
+        "AMBITO_PROY": "str",
+        "DEPARTAMENTO": "str"
+      },
+      "nulls": {
+        "VALOR": 0,
+        "INDICADOR": 0,
+        "CLASIF": 0,
+        "PERIODO": 0,
+        "VALOR PERIODO": 0,
+        "COD_UBICACION": 0,
+        "AMBITO_PROY": 0,
+        "DEPARTAMENTO": 0
+      },
+      "nunique": {
+        "VALOR": 537,
+        "INDICADOR": 5,
+        "CLASIF": 27,
+        "PERIODO": 1,
+        "VALOR PERIODO": 12,
+        "COD_UBICACION": 28,
+        "AMBITO_PROY": 2,
+        "DEPARTAMENTO": 27
+      },
+      "sample_rows": [
+        {
+          "VALOR": "18.0",
+          "INDICADOR": "PORCENTAJE DE CONFIANZA EN LA PNP",
+          "CLASIF": "0",
+          "PERIODO": "AÑO",
+          "VALOR PERIODO": "2014",
+          "COD_UBICACION": "0",
+          "AMBITO_PROY": "NACIONAL",
+          "DEPARTAMENTO": "NACIONAL"
+        },
+        {
+          "VALOR": "25.5",
+          "INDICADOR": "PORCENTAJE DE CONFIANZA EN LA PNP",
+          "CLASIF": "1",
+          "PERIODO": "AÑO",
+          "VALOR PERIODO": "2014",
+          "COD_UBICACION": "16",
+          "AMBITO_PROY": "DEPARTAMENTO",
+          "DEPARTAMENTO": "LORETO"
+        },
+        {
+          "VALOR": "24.6",
+          "INDICADOR": "PORCENTAJE DE CONFIANZA EN LA PNP",
+          "CLASIF": "2",
+          "PERIODO": "AÑO",
+          "VALOR PERIODO": "2014",
+          "COD_UBICACION": "3",
+          "AMBITO_PROY": "DEPARTAMENTO",
+          "DEPARTAMENTO": "APURÍMAC"
+        },
+        {
+          "VALOR": "24.5",
+          "INDICADOR": "PORCENTAJE DE CONFIANZA EN LA PNP",
+          "CLASIF": "3",
+          "PERIODO": "AÑO",
+          "VALOR PERIODO": "2014",
+          "COD_UBICACION": "25",
+          "AMBITO_PROY": "DEPARTAMENTO",
+          "DEPARTAMENTO": "UCAYALI"
+        },
+        {
+          "VALOR": "23.4",
+          "INDICADOR": "PORCENTAJE DE CONFIANZA EN LA PNP",
+          "CLASIF": "4",
+          "PERIODO": "AÑO",
+          "VALOR PERIODO": "2014",
+          "COD_UBICACION": "1",
+          "AMBITO_PROY": "DEPARTAMENTO",
+          "DEPARTAMENTO": "AMAZONAS"
+        }
+      ]
+    }
+  },
+  "dictionaries": {
+    "denuncias": {
+      "Hoja1": [
+        {
+          "Unnamed: 0": "Nombre del Dataset:",
+          "Unnamed: 1": "SISTEMA DE DENUNCIAS POLICIALES (SIDPOL)",
+          "Unnamed: 2": "",
+          "Unnamed: 3": "",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "",
+          "Unnamed: 1": "",
+          "Unnamed: 2": "",
+          "Unnamed: 3": "",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "Variable",
+          "Unnamed: 1": "Descripción",
+          "Unnamed: 2": "Tipo de dato",
+          "Unnamed: 3": "Tamaño",
+          "Unnamed: 4": "Recurso relacionado",
+          "Unnamed: 5": "Información Adicional "
+        },
+        {
+          "Unnamed: 0": "ANIO",
+          "Unnamed: 1": "Año del hecho",
+          "Unnamed: 2": "Númerico",
+          "Unnamed: 3": "4",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "MES",
+          "Unnamed: 1": "Mes del hecho",
+          "Unnamed: 2": "Númerico",
+          "Unnamed: 3": "2",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "DPTO_HECHO_NEW",
+          "Unnamed: 1": "Nombre de la región del hecho",
+          "Unnamed: 2": "Caracter",
+          "Unnamed: 3": "23",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "PROV_HECHO",
+          "Unnamed: 1": "Nombre de la provincia del hecho",
+          "Unnamed: 2": "Caracter",
+          "Unnamed: 3": "25",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "DIST_HECHO",
+          "Unnamed: 1": "Nombre del distrito del hecho",
+          "Unnamed: 2": "Caracter",
+          "Unnamed: 3": "36",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "UBIGEO_HECHO",
+          "Unnamed: 1": "Ubigeo del hecho",
+          "Unnamed: 2": "Númerico",
+          "Unnamed: 3": "6",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "P_MODALIDADES",
+          "Unnamed: 1": "Principales modalidades delictivas",
+          "Unnamed: 2": "Caracter",
+          "Unnamed: 3": "39",
+          "Unnamed: 4": "",
+          "Unnamed: 5": "Se ha considerado los principales delitos: robo, hurto, estafa, extorsión y violencia contra la mujer e integrantes del grupo familiar, secuestro"
+        },
+        {
+          "Unnamed: 0": "cantidad",
+          "Unnamed: 1": "Cantidad de denuncias",
+          "Unnamed: 2": "Númerico",
+          "Unnamed: 3": "4",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        }
+      ]
+    },
+    "enapres": {
+      "DiccionarioDatos": [
+        {
+          "Unnamed: 0": "Nombre del Dataset: Victimización, Percepción de Inseguridad y Confianza en la PNP, 2013-2024 ",
+          "Unnamed: 1": "",
+          "Unnamed: 2": "",
+          "Unnamed: 3": "",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "",
+          "Unnamed: 1": "",
+          "Unnamed: 2": "",
+          "Unnamed: 3": "",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "Variable",
+          "Unnamed: 1": "Descripción",
+          "Unnamed: 2": "Tipo de dato",
+          "Unnamed: 3": "Tamaño",
+          "Unnamed: 4": "Recurso relacionado",
+          "Unnamed: 5": "Información Adicional "
+        },
+        {
+          "Unnamed: 0": "VALOR",
+          "Unnamed: 1": "Valor del indicador",
+          "Unnamed: 2": "Numérico",
+          "Unnamed: 3": "2.1",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "INDICADOR",
+          "Unnamed: 1": "Nombre específico del indicador",
+          "Unnamed: 2": "Cadena",
+          "Unnamed: 3": "97",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "CLASIF",
+          "Unnamed: 1": "Número de ranking que indica la posición relativa del valor (indicador) de mayor a menor",
+          "Unnamed: 2": "Numérico",
+          "Unnamed: 3": "2",
+          "Unnamed: 4": "",
+          "Unnamed: 5": "Valor de ranking del nacional = 0"
+        },
+        {
+          "Unnamed: 0": "PERIODO",
+          "Unnamed: 1": "Periodicidad anual",
+          "Unnamed: 2": "Cadena",
+          "Unnamed: 3": "4",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "VALOR PERIODO",
+          "Unnamed: 1": "Año de referencia del valor (indicador)",
+          "Unnamed: 2": "Numérico",
+          "Unnamed: 3": "4",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "COD_UBICACION",
+          "Unnamed: 1": "Codificación del departamento y nacional",
+          "Unnamed: 2": "Numérico",
+          "Unnamed: 3": "4",
+          "Unnamed: 4": "",
+          "Unnamed: 5": "Lima Metropolitana (1501) y Región Lima (1599)"
+        },
+        {
+          "Unnamed: 0": "AMBITO_PROY",
+          "Unnamed: 1": "Nivel geográfico de agregación",
+          "Unnamed: 2": "Cadena",
+          "Unnamed: 3": "12",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        },
+        {
+          "Unnamed: 0": "DEPARTAMENTO",
+          "Unnamed: 1": "Nombre del departamento",
+          "Unnamed: 2": "Cadena",
+          "Unnamed: 3": "23",
+          "Unnamed: 4": "",
+          "Unnamed: 5": ""
+        }
+      ]
+    }
+  },
+  "metadata_texts": {
+    "denuncias": "METADATOS\nMetadatos del dataset:  Sistema de Denuncias Policiales (SIDPPOL) - [MINISTERIO DEL INTERIOR - MININTER]\nTítulo | Sistema de Denuncias Policiales (SIDPPOL)\nTítulo URL Descripción | https://www.datosabiertos.gob.pe/dataset/denuncias-policiales-1\nDescripción | Información sobre las denuncias de los principales delitos sobre homicidios, hurto, robo, extorsión, estafa y violencia contra la mujer e integrantes del grupo familiar. Esta información corresponde a los años 2018 a la fecha de actualización. Información sujeta a variación por ser datos dinámicos.\nEntidad | Ministerio del Interior\nFuente | Dirección de Tecnología de la Información y Comunicaciones (DIRTIC) de la Policía Nacional del Perú (PNP)\nEtiquetas | Denuncias, delitos, violencia contra la mujer\nFecha de creación | 2025-07-07, 14:22 (UTC-05:00)\nFrecuencia de actualización | Mensual\nÚltima actualización | 2026-08-13, 08:09 (UTC-05:00)\nVersión | 0.1\nLicencia | Open Data Commons Attribution License\nIdioma | Español\nNivel de acceso público | Público\nTipo de recurso | Dataset\nFormato | CSV\nCobertura | Hasta nivel distrital\nCorreo de contacto | warias@mininter.gob.pe",
+    "enapres": "METADATOS\nMetadatos del dataset:  Victimización, Percepción de Inseguridad y Confianza en la PNP, 2013-2024 - [MINISTERIO DEL INTERIOR - MININTER]\nTítulo | Victimización, Percepción de Inseguridad y Confianza en la PNP, 2013-2024\nTítulo URL Descripción | https://www.datosabiertos.gob.pe/dataset/victimizaci%C3%B3n-percepci%C3%B3n-de-inseguridad-y-confianza-en-la-pnp\nDescripción | Series estadísticas 2013-2024 sobre victimización, percepción de inseguridad y confianza en la PNP\nEntidad | Ministerio del Interior\nFuente | Encuesta Nacional de Programas Presupuestales (ENAPRES) y Encuesta Nacional de Hogares (ENAHO) - INEI\nEtiquetas | Victimización, Percepción de Inseguridad y Confianza en la PNP\nFecha de creación | 2025-06-20, 16:38 (UTC-05:00)\nFrecuencia de actualización | Anual\nÚltima actualización | 2025-06-20, 16:38 (UTC-05:00)\nVersión | 0.1\nLicencia | Open Data Commons Attribution License\nIdioma | Español\nNivel de acceso público | Público\nTipo de recurso | Dataset\nFormato | csv\nCobertura | Nacional y departamental\nCorreo de contacto | warias@mininter.gob.pe"
+  }
+}

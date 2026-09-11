@@ -1,0 +1,19 @@
+METADATOS
+Metadatos del dataset:  Victimización, Percepción de Inseguridad y Confianza en la PNP, 2013-2024 - [MINISTERIO DEL INTERIOR - MININTER]
+Título | Victimización, Percepción de Inseguridad y Confianza en la PNP, 2013-2024
+Título URL Descripción | https://www.datosabiertos.gob.pe/dataset/victimizaci%C3%B3n-percepci%C3%B3n-de-inseguridad-y-confianza-en-la-pnp
+Descripción | Series estadísticas 2013-2024 sobre victimización, percepción de inseguridad y confianza en la PNP
+Entidad | Ministerio del Interior
+Fuente | Encuesta Nacional de Programas Presupuestales (ENAPRES) y Encuesta Nacional de Hogares (ENAHO) - INEI
+Etiquetas | Victimización, Percepción de Inseguridad y Confianza en la PNP
+Fecha de creación | 2025-06-20, 16:38 (UTC-05:00)
+Frecuencia de actualización | Anual
+Última actualización | 2025-06-20, 16:38 (UTC-05:00)
+Versión | 0.1
+Licencia | Open Data Commons Attribution License
+Idioma | Español
+Nivel de acceso público | Público
+Tipo de recurso | Dataset
+Formato | csv
+Cobertura | Nacional y departamental
+Correo de contacto | warias@mininter.gob.pe

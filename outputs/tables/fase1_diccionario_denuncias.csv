@@ -1,0 +1,12 @@
+sheet,Unnamed: 0,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5
+Hoja1,Nombre del Dataset:,SISTEMA DE DENUNCIAS POLICIALES (SIDPOL),,,,
+Hoja1,,,,,,
+Hoja1,Variable,Descripción,Tipo de dato,Tamaño,Recurso relacionado,Información Adicional 
+Hoja1,ANIO,Año del hecho,Númerico,4,,
+Hoja1,MES,Mes del hecho,Númerico,2,,
+Hoja1,DPTO_HECHO_NEW,Nombre de la región del hecho,Caracter,23,,
+Hoja1,PROV_HECHO,Nombre de la provincia del hecho,Caracter,25,,
+Hoja1,DIST_HECHO,Nombre del distrito del hecho,Caracter,36,,
+Hoja1,UBIGEO_HECHO,Ubigeo del hecho,Númerico,6,,
+Hoja1,P_MODALIDADES,Principales modalidades delictivas,Caracter,39,,"Se ha considerado los principales delitos: robo, hurto, estafa, extorsión y violencia contra la mujer e integrantes del grupo familiar, secuestro"
+Hoja1,cantidad,Cantidad de denuncias,Númerico,4,,

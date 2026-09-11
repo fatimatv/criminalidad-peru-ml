@@ -1,0 +1,343 @@
+{
+  "eda": {
+    "coverage": [
+      {
+        "item": "filas_panel",
+        "valor": 182
+      },
+      {
+        "item": "departamentos",
+        "valor": 26
+      },
+      {
+        "item": "anio_min",
+        "valor": 2018
+      },
+      {
+        "item": "anio_max",
+        "valor": 2024
+      },
+      {
+        "item": "duplicados_departamento_anio",
+        "valor": 0
+      }
+    ],
+    "by_year": [
+      {
+        "anio": 2018,
+        "denuncias_total": 774804,
+        "denuncias_tasa_100k": 2142.362269615944,
+        "victimizacion_pct": 23.71153846153846,
+        "percepcion_inseguridad_pct": 50.6576923076923,
+        "confianza_pnp_pct": 16.646153846153847
+      },
+      {
+        "anio": 2019,
+        "denuncias_total": 854898,
+        "denuncias_tasa_100k": 2448.644998681114,
+        "victimizacion_pct": 23.888461538461538,
+        "percepcion_inseguridad_pct": 50.24615384615385,
+        "confianza_pnp_pct": 18.534615384615385
+      },
+      {
+        "anio": 2020,
+        "denuncias_total": 649169,
+        "denuncias_tasa_100k": 1959.945626466855,
+        "victimizacion_pct": 20.373076923076926,
+        "percepcion_inseguridad_pct": 25.04615384615385,
+        "confianza_pnp_pct": 26.773076923076925
+      },
+      {
+        "anio": 2021,
+        "denuncias_total": 754638,
+        "denuncias_tasa_100k": 2280.238180903844,
+        "victimizacion_pct": 15.584615384615384,
+        "percepcion_inseguridad_pct": 47.1576923076923,
+        "confianza_pnp_pct": 22.034615384615385
+      },
+      {
+        "anio": 2022,
+        "denuncias_total": 877736,
+        "denuncias_tasa_100k": 2506.3116562759037,
+        "victimizacion_pct": 20.21923076923077,
+        "percepcion_inseguridad_pct": 54.534615384615385,
+        "confianza_pnp_pct": 19.86923076923077
+      },
+      {
+        "anio": 2023,
+        "denuncias_total": 1044843,
+        "denuncias_tasa_100k": 2773.1422504403276,
+        "victimizacion_pct": 23.04615384615385,
+        "percepcion_inseguridad_pct": 51.58846153846154,
+        "confianza_pnp_pct": 19.215384615384615
+      },
+      {
+        "anio": 2024,
+        "denuncias_total": 1014315,
+        "denuncias_tasa_100k": 2683.8979909050586,
+        "victimizacion_pct": 24.457692307692305,
+        "percepcion_inseguridad_pct": 51.05,
+        "confianza_pnp_pct": 17.73076923076923
+      }
+    ]
+  },
+  "clustering": {
+    "best_model": "KMeans",
+    "k": 3,
+    "metrics": [
+      {
+        "modelo": "KMeans",
+        "k": 2,
+        "silhouette": 0.23888739765538525,
+        "davies_bouldin": 1.5576922036401668,
+        "calinski_harabasz": 59.554699594445275,
+        "inertia": 1288.4142986745314
+      },
+      {
+        "modelo": "Agglomerative-Ward",
+        "k": 2,
+        "silhouette": 0.21512855684902094,
+        "davies_bouldin": 1.7117151258633818,
+        "calinski_harabasz": 48.302795719387156,
+        "inertia": NaN
+      },
+      {
+        "modelo": "KMeans",
+        "k": 3,
+        "silhouette": 0.2032291080888796,
+        "davies_bouldin": 1.4885906030210883,
+        "calinski_harabasz": 49.78370983102809,
+        "inertia": 1086.387402440642
+      },
+      {
+        "modelo": "Agglomerative-Ward",
+        "k": 3,
+        "silhouette": 0.12696955782798244,
+        "davies_bouldin": 1.852511483403412,
+        "calinski_harabasz": 37.776144271755015,
+        "inertia": NaN
+      },
+      {
+        "modelo": "KMeans",
+        "k": 4,
+        "silhouette": 0.17406896326719476,
+        "davies_bouldin": 1.658853805478595,
+        "calinski_harabasz": 42.10029646775646,
+        "inertia": 981.4547373489157
+      },
+      {
+        "modelo": "Agglomerative-Ward",
+        "k": 4,
+        "silhouette": 0.13204159328487824,
+        "davies_bouldin": 1.7838388704446948,
+        "calinski_harabasz": 33.77846109251901,
+        "inertia": NaN
+      },
+      {
+        "modelo": "KMeans",
+        "k": 5,
+        "silhouette": 0.1643942798678508,
+        "davies_bouldin": 1.610311041213364,
+        "calinski_harabasz": 37.845891821452405,
+        "inertia": 898.7988604579979
+      },
+      {
+        "modelo": "Agglomerative-Ward",
+        "k": 5,
+        "silhouette": 0.14592412676995645,
+        "davies_bouldin": 1.648569973702891,
+        "calinski_harabasz": 32.7892817569312,
+        "inertia": NaN
+      },
+      {
+        "modelo": "KMeans",
+        "k": 6,
+        "silhouette": 0.18303840037551403,
+        "davies_bouldin": 1.5083586434030132,
+        "calinski_harabasz": 35.877249707730215,
+        "inertia": 820.9219164952308
+      },
+      {
+        "modelo": "Agglomerative-Ward",
+        "k": 6,
+        "silhouette": 0.16145050972040176,
+        "davies_bouldin": 1.615091850621935,
+        "calinski_harabasz": 31.8823733863572,
+        "inertia": NaN
+      },
+      {
+        "modelo": "KMeans",
+        "k": 7,
+        "silhouette": 0.1820040702693462,
+        "davies_bouldin": 1.5068020888391847,
+        "calinski_harabasz": 34.20388833286551,
+        "inertia": 759.2324251382313
+      },
+      {
+        "modelo": "Agglomerative-Ward",
+        "k": 7,
+        "silhouette": 0.16635763748890364,
+        "davies_bouldin": 1.5204699445731025,
+        "calinski_harabasz": 30.508265703151494,
+        "inertia": NaN
+      }
+    ]
+  },
+  "classification": {
+    "best_model": "RandomForest",
+    "metrics": [
+      {
+        "modelo": "DummyClassifier",
+        "accuracy": 0.7608695652173914,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.5,
+        "pr_auc": 0.2391304347826087,
+        "confusion_matrix": [
+          [
+            35,
+            0
+          ],
+          [
+            11,
+            0
+          ]
+        ],
+        "classification_report": {
+          "0": {
+            "precision": 0.7608695652173914,
+            "recall": 1.0,
+            "f1-score": 0.8641975308641975,
+            "support": 35.0
+          },
+          "1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 11.0
+          },
+          "accuracy": 0.7608695652173914,
+          "macro avg": {
+            "precision": 0.3804347826086957,
+            "recall": 0.5,
+            "f1-score": 0.43209876543209874,
+            "support": 46.0
+          },
+          "weighted avg": {
+            "precision": 0.5789224952741021,
+            "recall": 0.7608695652173914,
+            "f1-score": 0.657541599570585,
+            "support": 46.0
+          }
+        },
+        "cv_best_score": NaN,
+        "best_params": {}
+      },
+      {
+        "modelo": "LogisticRegression",
+        "accuracy": 0.5217391304347826,
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "roc_auc": 0.974025974025974,
+        "pr_auc": 0.9087990292535748,
+        "confusion_matrix": [
+          [
+            13,
+            22
+          ],
+          [
+            0,
+            11
+          ]
+        ],
+        "classification_report": {
+          "0": {
+            "precision": 1.0,
+            "recall": 0.37142857142857144,
+            "f1-score": 0.5416666666666666,
+            "support": 35.0
+          },
+          "1": {
+            "precision": 0.3333333333333333,
+            "recall": 1.0,
+            "f1-score": 0.5,
+            "support": 11.0
+          },
+          "accuracy": 0.5217391304347826,
+          "macro avg": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6857142857142857,
+            "f1-score": 0.5208333333333333,
+            "support": 46.0
+          },
+          "weighted avg": {
+            "precision": 0.8405797101449275,
+            "recall": 0.5217391304347826,
+            "f1-score": 0.5317028985507246,
+            "support": 46.0
+          }
+        },
+        "cv_best_score": 0.6871794871794872,
+        "best_params": {
+          "clf__C": 1
+        }
+      },
+      {
+        "modelo": "RandomForest",
+        "accuracy": 0.8913043478260869,
+        "precision": 0.6875,
+        "recall": 1.0,
+        "f1": 0.8148148148148148,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0,
+        "confusion_matrix": [
+          [
+            30,
+            5
+          ],
+          [
+            0,
+            11
+          ]
+        ],
+        "classification_report": {
+          "0": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 35.0
+          },
+          "1": {
+            "precision": 0.6875,
+            "recall": 1.0,
+            "f1-score": 0.8148148148148148,
+            "support": 11.0
+          },
+          "accuracy": 0.8913043478260869,
+          "macro avg": {
+            "precision": 0.84375,
+            "recall": 0.9285714285714286,
+            "f1-score": 0.8689458689458689,
+            "support": 46.0
+          },
+          "weighted avg": {
+            "precision": 0.9252717391304348,
+            "recall": 0.8913043478260869,
+            "f1-score": 0.8971881580577232,
+            "support": 46.0
+          }
+        },
+        "cv_best_score": 0.6714285714285714,
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100
+        }
+      }
+    ],
+    "train_rows": 92,
+    "test_rows": 46
+  }
+}

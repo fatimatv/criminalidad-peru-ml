@@ -1,0 +1,12 @@
+sheet,Unnamed: 0,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5
+DiccionarioDatos,"Nombre del Dataset: Victimización, Percepción de Inseguridad y Confianza en la PNP, 2013-2024 ",,,,,
+DiccionarioDatos,,,,,,
+DiccionarioDatos,Variable,Descripción,Tipo de dato,Tamaño,Recurso relacionado,Información Adicional 
+DiccionarioDatos,VALOR,Valor del indicador,Numérico,2.1,,
+DiccionarioDatos,INDICADOR,Nombre específico del indicador,Cadena,97,,
+DiccionarioDatos,CLASIF,Número de ranking que indica la posición relativa del valor (indicador) de mayor a menor,Numérico,2,,Valor de ranking del nacional = 0
+DiccionarioDatos,PERIODO,Periodicidad anual,Cadena,4,,
+DiccionarioDatos,VALOR PERIODO,Año de referencia del valor (indicador),Numérico,4,,
+DiccionarioDatos,COD_UBICACION,Codificación del departamento y nacional,Numérico,4,,Lima Metropolitana (1501) y Región Lima (1599)
+DiccionarioDatos,AMBITO_PROY,Nivel geográfico de agregación,Cadena,12,,
+DiccionarioDatos,DEPARTAMENTO,Nombre del departamento,Cadena,23,,
