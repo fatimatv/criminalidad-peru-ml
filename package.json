@@ -1,0 +1,8 @@
+{
+  "name": "criminalidad-peru-ml",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-site.mjs"
+  }
+}
