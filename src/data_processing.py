@@ -17,10 +17,10 @@ TABLES = ROOT / "outputs" / "tables"
 
 
 DEPT_REPLACEMENTS = {
-    "PROV CONST DEL CALLAO": "PROV. CONST. DEL CALLAO",
-    "PROV. CONST. DEL CALLAO": "PROV. CONST. DEL CALLAO",
-    "REGION LIMA": "REGION LIMA",
-    "LIMA METROPOLITANA": "LIMA METROPOLITANA",
+    "PROV CONST DEL CALLAO": "CALLAO",
+    "PROV. CONST. DEL CALLAO": "CALLAO",
+    "REGION LIMA": "LIMA",
+    "LIMA METROPOLITANA": "LIMA",
 }
 
 
@@ -42,7 +42,7 @@ def normalize_department(value: object) -> str:
         "APURMAC": "APURIMAC",
         "HUNUCO": "HUANUCO",
         "JUNN": "JUNIN",
-        "REGIN LIMA": "REGION LIMA",
+        "REGIN LIMA": "LIMA",
         "SAN MARTN": "SAN MARTIN",
     }
     return repairs.get(text, text)

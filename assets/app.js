@@ -101,7 +101,7 @@ function drawMap() {
     path.addEventListener("mouseleave", hideTip);
     path.addEventListener("blur", hideTip);
     svg.appendChild(path);
-    if (row && ["TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","ANCASH","ICA","TACNA","UCAYALI","LORETO","CUSCO","PUNO","AREQUIPA"].includes(name)) {
+    if (row && ["TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","ANCASH","ICA","TACNA","UCAYALI","LORETO","CUSCO","PUNO","AREQUIPA","LIMA","CALLAO"].includes(name)) {
       const [cx, cy] = project(centroid(feature.geometry));
       svg.appendChild(node("text", { x: cx, y: cy, "text-anchor": "middle", class: "map-label" }, name.replace("LA LIBERTAD", "LIBERTAD")));
     }
@@ -141,7 +141,14 @@ function drawClusterTable() {
   const table = document.querySelector("#cluster-table");
   table.innerHTML = `<thead><tr><th>Cluster</th><th>Observaciones</th><th>Tasa denuncias</th><th>Victimizacion</th><th>Percepcion</th><th>Confianza</th><th>Lectura</th></tr></thead>`;
   const tbody = document.createElement("tbody");
-  clusters.forEach(c=>{ const lectura = c.cluster===0 ? "Mayor victimización relativa y menor confianza promedio." : c.cluster===1 ? "Menor incidencia relativa y menor percepción promedio." : "Mayor percepción y tasa registrada promedio."; const tr=document.createElement("tr"); tr.innerHTML = `<td>${c.cluster}</td><td>${c.observaciones}</td><td>${fmt(c.denuncias_tasa_100k,1)}</td><td>${pct(c.victimization)}</td><td>${pct(c.percepcion)}</td><td>${pct(c.confianza)}</td><td>${lectura}</td>`; tbody.appendChild(tr); });
+  const avgRate = clusters.reduce((a,c)=>a+c.denuncias_tasa_100k,0) / Math.max(1, clusters.length);
+  const avgPerception = clusters.reduce((a,c)=>a+c.percepcion,0) / Math.max(1, clusters.length);
+  clusters.forEach(c=>{
+    const lectura = c.denuncias_tasa_100k >= avgRate || c.percepcion >= avgPerception ? "Mayor presion registrada o percibida; requiere lectura prioritaria." : "Menor presion relativa; util como perfil comparativo.";
+    const tr=document.createElement("tr");
+    tr.innerHTML = `<td>${c.cluster}</td><td>${c.observaciones}</td><td>${fmt(c.denuncias_tasa_100k,1)}</td><td>${pct(c.victimization)}</td><td>${pct(c.percepcion)}</td><td>${pct(c.confianza)}</td><td>${lectura}</td>`;
+    tbody.appendChild(tr);
+  });
   table.appendChild(tbody);
 }
 function addLegend(el, items) { const old = el.querySelector(".legend"); if (old) old.remove(); const legend=document.createElement("div"); legend.className="legend"; legend.innerHTML=items.map(i=>`<span><i style="background:${i.color}"></i>${i.label}</span>`).join(""); el.appendChild(legend); }
@@ -177,3 +184,4 @@ async function init() {
   populateControls(); bind(); render(); window.addEventListener("resize", render);
 }
 init().catch(err => { document.body.insertAdjacentHTML("beforeend", `<pre class="load-error">No se pudieron cargar los datos del tablero: ${err.message}</pre>`); });
+

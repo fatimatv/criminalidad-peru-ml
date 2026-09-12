@@ -16,8 +16,8 @@ El nivel común máximo validado para integración es `departamento-año`, limit
 
 ## Modelos
 
-- Clustering: K-Means y Agglomerative Clustering. Selección final: KMeans con k=3.
-- Clasificación: DummyClassifier, Regresión Logística y Random Forest. Mejor modelo: RandomForest con F1=0.815, recall=1.000 y precision=0.688.
+- Clustering: K-Means y Agglomerative Clustering. Selección final: KMeans con k=2.
+- Clasificación: DummyClassifier, Regresión Logística y Random Forest. Mejor modelo: RandomForest con F1=0.875, recall=1.000 y precision=0.778.
 
 ## Cómo ejecutar
 

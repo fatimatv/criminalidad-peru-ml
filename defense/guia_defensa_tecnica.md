@@ -10,7 +10,7 @@
 6. EDA (3:30-4:30): mencionar caída 2020 y recuperación posterior.
 7. Features (4:30-5:05): tasas, proporciones, brecha percepción-victimización y rezagos.
 8. Clustering método (5:05-5:45): escalado, k=2..7, dos algoritmos.
-9. Clustering resultados (5:45-6:35): K-Means k=3, silhouette moderado e interpretación prudente.
+9. Clustering resultados (5:45-6:35): K-Means k=2, silhouette moderado e interpretación prudente.
 10. Clasificación método (6:35-7:25): target q75 anual, train 2019-2022, test 2023-2024.
 11. Benchmark (7:25-8:15): Random Forest supera baseline; accuracy sola no basta.
 12. XAI (8:15-8:55): importancia predictiva no causalidad.

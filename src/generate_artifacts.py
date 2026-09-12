@@ -166,7 +166,7 @@ Limitación: muestra pequeña; resultados deben actualizarse con nuevos años.
 """
     (ROOT / "rubric_compliance.md").write_text(rubric, encoding="utf-8")
 
-    defense = """# Guía de defensa técnica
+    defense = f"""# Guía de defensa técnica
 
 ## Guion cronometrado de 12 minutos
 
@@ -178,7 +178,7 @@ Limitación: muestra pequeña; resultados deben actualizarse con nuevos años.
 6. EDA (3:30-4:30): mencionar caída 2020 y recuperación posterior.
 7. Features (4:30-5:05): tasas, proporciones, brecha percepción-victimización y rezagos.
 8. Clustering método (5:05-5:45): escalado, k=2..7, dos algoritmos.
-9. Clustering resultados (5:45-6:35): K-Means k=3, silhouette moderado e interpretación prudente.
+9. Clustering resultados (5:45-6:35): K-Means k={best_cluster['k']}, silhouette moderado e interpretación prudente.
 10. Clasificación método (6:35-7:25): target q75 anual, train 2019-2022, test 2023-2024.
 11. Benchmark (7:25-8:15): Random Forest supera baseline; accuracy sola no basta.
 12. XAI (8:15-8:55): importancia predictiva no causalidad.
@@ -229,7 +229,7 @@ def report_sections(summary: dict) -> list[tuple[str, str]]:
         ("A. CONTEXTO DEL PROBLEMA", "La seguridad ciudadana es un problema público prioritario en el Perú. Este proyecto analiza denuncias registradas, victimización, percepción de inseguridad y confianza en la PNP sin confundir esos conceptos. La institución usuaria hipotética es el Ministerio del Interior y el Observatorio Nacional de Seguridad Ciudadana. El objetivo es construir evidencia territorial agregada para diagnóstico, priorización y seguimiento."),
         ("B. COMPRENSIÓN DEL NEGOCIO", "La decisión a apoyar es identificar departamentos y años con patrones diferenciados de seguridad ciudadana para orientar análisis, prevención y asignación de atención pública. El modelo no debe usarse para inferir comportamiento individual ni automatizar intervenciones policiales."),
         ("C. COMPRENSIÓN DEL CONJUNTO DE DATOS", "Se usaron tres fuentes oficiales: denuncias policiales SIDPOL/MININTER, indicadores ENAPRES/MININTER-INEI y población proyectada INEI. La unidad común validada fue departamento-año para 2018-2024. Denuncias tiene granularidad mensual distrital; ENAPRES está agregada a nivel nacional/departamental anual. No hubo duplicados en los CSV inspeccionados. El recurso ENAPRES tiene caracteres dañados en algunas cadenas, por lo que se aplicó normalización conservadora."),
-        ("D. ANÁLISIS EXPLORATORIO DE DATOS", f"El panel final tiene 182 observaciones, 26 jurisdicciones y 7 años. Las denuncias agregadas bajaron en 2020 ({int(by_year.loc[by_year.anio==2020,'denuncias_total'].iloc[0]):,}) y luego aumentaron hasta 2023 ({int(by_year.loc[by_year.anio==2023,'denuncias_total'].iloc[0]):,}). La victimización promedio departamental fue {by_year.loc[by_year.anio==2024,'victimizacion_pct'].iloc[0]:.1f}% en 2024. Las correlaciones se calcularon con Spearman sobre variables numéricas agregadas."),
+        ("D. ANÁLISIS EXPLORATORIO DE DATOS", f"El panel final tiene {len(summary['eda']['coverage']) and int(pd.DataFrame(summary['eda']['coverage']).set_index('item').loc['filas_panel', 'valor'])} observaciones, {int(pd.DataFrame(summary['eda']['coverage']).set_index('item').loc['departamentos', 'valor'])} departamentos y 7 años. Las denuncias agregadas bajaron en 2020 ({int(by_year.loc[by_year.anio==2020,'denuncias_total'].iloc[0]):,}) y luego aumentaron hasta 2023 ({int(by_year.loc[by_year.anio==2023,'denuncias_total'].iloc[0]):,}). La victimización promedio departamental fue {by_year.loc[by_year.anio==2024,'victimizacion_pct'].iloc[0]:.1f}% en 2024. Las correlaciones se calcularon con Spearman sobre variables numéricas agregadas."),
         ("E. SELECCIÓN DEL TIPO DE PROBLEMA", "El proyecto contiene dos componentes complementarios: clustering no supervisado para descubrir perfiles territoriales y clasificación supervisada para anticipar victimización alta relativa. El target supervisado se definió como pertenecer al percentil 75 anual de victimización, usando predictores rezagados cuando correspondía."),
         ("F. IMPLEMENTACIÓN DE MODELOS", "Para clustering se usaron K-Means y Agglomerative Clustering con variables estandarizadas. Para clasificación se usaron DummyClassifier, Regresión Logística y Random Forest dentro de pipelines con imputación/escalado cuando correspondía. La partición temporal entrenó con 2019-2022 y probó con 2023-2024."),
         ("G. BENCHMARK DE MODELOS", f"Clustering: se evaluaron k=2..7 con silhouette, Davies-Bouldin y Calinski-Harabasz. La selección final fue {summary['clustering']['best_model']} con k={summary['clustering']['k']}. Clasificación: Random Forest obtuvo accuracy={best_clf['accuracy']:.3f}, precision={best_clf['precision']:.3f}, recall={best_clf['recall']:.3f}, F1={best_clf['f1']:.3f}, ROC-AUC={best_clf['roc_auc']:.3f} y PR-AUC={best_clf['pr_auc']:.3f}."),
@@ -237,7 +237,7 @@ def report_sections(summary: dict) -> list[tuple[str, str]]:
         ("I. IMPACTO MULTIDISCIPLINARIO", "Desde una perspectiva jurídica, el uso de IA en decisiones públicas debe respetar legalidad, debido procedimiento, no discriminación, transparencia, explicabilidad, calidad de datos, proporcionalidad y supervisión humana. En Perú son relevantes la Ley de Gobierno Digital, la Ley de Protección de Datos Personales y la Política Nacional Multisectorial de Seguridad Ciudadana al 2030. El modelo debe apoyar diagnóstico agregado, no decisiones automatizadas sobre personas ni comunidades."),
         ("J. INTELIGENCIA ARTIFICIAL RESPONSABLE", "El modelo puede reproducir sesgos de reporte, cobertura, medición, encuesta, sesgo histórico, sesgo territorial y socioeconómico. También existe riesgo de ecological fallacy, automation bias y estigmatización territorial. Mitigaciones: documentación clara, auditorías periódicas, revisión humana, comunicación prudente, métricas por subgrupos agregados, actualización con nuevos datos y prohibición de usos de profiling individual."),
         ("K. CONCLUSIONES", "1. La integración válida es departamento-año, no distrito.\n2. Denuncias registradas, victimización y percepción miden fenómenos distintos.\n3. La brecha percepción-victimización es analíticamente relevante.\n4. K-Means ofreció perfiles exploratorios interpretables.\n5. Random Forest superó al baseline en detección de victimización alta relativa.\n6. Accuracy sola habría ocultado el fracaso del baseline.\n7. El principal riesgo ético es tratar denuncias como criminalidad real.\n8. El sistema debe usarse como apoyo analítico con supervisión humana."),
-        ("LIMITACIONES", "La muestra integrada es pequeña, solo 182 observaciones. ENAPRES está agregada y no permite inferencia individual. Las tasas dependen de proyecciones poblacionales. Las denuncias son registros administrativos dinámicos y no equivalen a todos los delitos ocurridos."),
+        ("LIMITACIONES", f"La muestra integrada es pequeña, solo {int(pd.DataFrame(summary['eda']['coverage']).set_index('item').loc['filas_panel', 'valor'])} observaciones. ENAPRES está agregada y no permite inferencia individual. Las tasas dependen de proyecciones poblacionales. Las denuncias son registros administrativos dinámicos y no equivalen a todos los delitos ocurridos."),
         ("RECOMENDACIONES", "Actualizar el pipeline anualmente, validar cambios de esquema, incorporar variables oficiales adicionales solo si comparten granularidad, revisar umbrales con expertos sectoriales y presentar resultados como insumos de diagnóstico, no como rankings de peligrosidad."),
         ("REFERENCIAS IEEE", (ROOT / "references" / "referencias_ieee.md").read_text(encoding="utf-8")),
     ]
@@ -353,3 +353,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+
