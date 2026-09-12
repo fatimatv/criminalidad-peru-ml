@@ -28,6 +28,7 @@ const directories = [
   "outputs/figures",
   "outputs/tables",
   "data/processed",
+  "data/geo",
 ];
 
 for (const file of files) {
@@ -42,4 +43,3 @@ for (const directory of directories) {
     cpSync(source, join(dist, directory), { recursive: true });
   }
 }
-

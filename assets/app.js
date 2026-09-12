@@ -8,7 +8,7 @@ const metricLabels = {
 };
 const tooltip = document.querySelector("#tooltip");
 const state = { year: 2024, metric: "denuncias_tasa_100k", department: "Todos", cluster: "Todos" };
-let panel = [], clusters = [], modelMetrics = [], importance = [], summary = null;
+let panel = [], clusters = [], modelMetrics = [], importance = [], summary = null, peruGeo = null;
 
 async function text(path) { const res = await fetch(path); if (!res.ok) throw new Error(path); return res.text(); }
 async function json(path) { const res = await fetch(path); if (!res.ok) throw new Error(path); const raw = await res.text(); return JSON.parse(raw.replace(/\bNaN\b/g, "null")); }
@@ -36,6 +36,7 @@ function node(name, attrs = {}, textContent = null) { const n = document.createE
 function showTip(evt, html) { tooltip.innerHTML = html; tooltip.hidden = false; tooltip.style.left = `${evt.clientX + 14}px`; tooltip.style.top = `${evt.clientY + 14}px`; }
 function hideTip() { tooltip.hidden = true; }
 function groupBy(data, key) { return data.reduce((m,d) => ((m[d[key]] ||= []).push(d), m), {}); }
+function normalizeName(name) { return String(name || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim(); }
 
 function drawAxes(svg, xTicks, yTicks, x, y, width, height, margin) {
   yTicks.forEach(t => { const yy = y(t); svg.appendChild(node("line", { x1: margin.left, y1: yy, x2: width - margin.right, y2: yy, class: "gridline" })); svg.appendChild(node("text", { x: margin.left - 8, y: yy + 4, "text-anchor": "end", class: "axis" }, fmt(t, 0))); });
@@ -47,7 +48,7 @@ function drawTrend() {
   const years = [...new Set(panel.map(d => d.anio))].sort();
   const series = ["denuncias_tasa_100k", "victimizacion_pct", "percepcion_inseguridad_pct", "confianza_pnp_pct"];
   const normalized = [];
-  series.forEach((key, si) => { const vals = base.map(d => d[key]); const [min,max] = [Math.min(...vals), Math.max(...vals)]; base.forEach(d => normalized.push({ anio: d.anio, key, value: d[key], index: ((d[key]-min)/((max-min)||1))*100, color: palette[si] })); });
+  series.forEach((key, si) => { const vals = base.map(d => d[key]).filter(Number.isFinite); const [min,max] = [Math.min(...vals), Math.max(...vals)]; base.forEach(d => normalized.push({ anio: d.anio, key, value: d[key], index: ((d[key]-min)/((max-min)||1))*100, color: palette[si] })); });
   const x = scale([Math.min(...years), Math.max(...years)], [m.left, 760-m.right]); const y = scale([0,100], [340-m.bottom, m.top]);
   drawAxes(svg, years, [0,25,50,75,100], x, y, 760, 340, m);
   series.forEach((key, si) => { const pts = normalized.filter(d => d.key === key).sort((a,b)=>a.anio-b.anio); const path = pts.map((d,i)=>`${i?"L":"M"}${x(d.anio)},${y(d.index)}`).join(" "); svg.appendChild(node("path", { d: path, fill: "none", stroke: palette[si], "stroke-width": 3 })); pts.forEach(d => { const c = node("circle", { cx: x(d.anio), cy: y(d.index), r: 4.5, fill: palette[si], tabindex: 0 }); c.addEventListener("mousemove", e => showTip(e, `<b>${metricLabels[key]}</b><br>${d.anio}: ${fmt(d.value, 1)}`)); c.addEventListener("mouseleave", hideTip); svg.appendChild(c); }); });
@@ -59,6 +60,52 @@ function drawRanking() {
   document.querySelector("#ranking-title").textContent = `${metricLabels[state.metric]} (${state.year})`;
   const x = scale([0, Math.max(...rows.map(d => d[state.metric]))], [m.left, 520-m.right]);
   rows.forEach((d,i)=>{ const y = m.top + i*28; const w = x(d[state.metric])-m.left; svg.appendChild(node("text", {x:m.left-8,y:y+17,"text-anchor":"end",class:"axis"}, d.departamento)); const rect=node("rect",{x:m.left,y:y,width:Math.max(1,w),height:18,rx:4,fill:palette[d.cluster%palette.length]}); rect.addEventListener("mousemove",e=>showTip(e,`<b>${d.departamento}</b><br>${metricLabels[state.metric]}: ${fmt(d[state.metric],1)}<br>Cluster ${d.cluster}`)); rect.addEventListener("mouseleave",hideTip); svg.appendChild(rect); svg.appendChild(node("text",{x:x(d[state.metric])+6,y:y+14,class:"axis"},fmt(d[state.metric],1))); });
+}
+function allCoordinatePairs(geometry) {
+  const pairs = [];
+  const visit = value => Array.isArray(value?.[0]) ? value.forEach(visit) : pairs.push(value);
+  if (geometry?.coordinates) visit(geometry.coordinates);
+  return pairs.filter(p => Array.isArray(p) && Number.isFinite(p[0]) && Number.isFinite(p[1]));
+}
+function polygonPath(ring, project) { return ring.map((pt, i) => `${i ? "L" : "M"}${project(pt)[0].toFixed(1)},${project(pt)[1].toFixed(1)}`).join(" ") + "Z"; }
+function geometryPath(geometry, project) {
+  if (!geometry) return "";
+  const polys = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.type === "MultiPolygon" ? geometry.coordinates : [];
+  return polys.flatMap(poly => poly.map(ring => polygonPath(ring, project))).join(" ");
+}
+function centroid(geometry) {
+  const pts = allCoordinatePairs(geometry);
+  if (!pts.length) return [0,0];
+  return [pts.reduce((a,p)=>a+p[0],0)/pts.length, pts.reduce((a,p)=>a+p[1],0)/pts.length];
+}
+function drawMap() {
+  const el = document.querySelector("#map-chart");
+  if (!el || !peruGeo) return;
+  const svg = svgRoot(el, 720, 720), m = {left:24,right:24,top:18,bottom:18};
+  const pts = peruGeo.features.flatMap(f => allCoordinatePairs(f.geometry));
+  const lon = pts.map(p=>p[0]), lat = pts.map(p=>p[1]);
+  const projectX = scale([Math.min(...lon), Math.max(...lon)], [m.left, 720-m.right]);
+  const projectY = scale([Math.min(...lat), Math.max(...lat)], [720-m.bottom, m.top]);
+  const project = p => [projectX(p[0]), projectY(p[1])];
+  const rowsByDept = Object.fromEntries(panel.filter(d => d.anio === state.year).map(d => [normalizeName(d.departamento), d]));
+  document.querySelector("#map-year-note").textContent = state.year;
+  peruGeo.features.forEach(feature => {
+    const name = normalizeName(feature.properties.NOMBDEP || feature.properties.name);
+    const row = rowsByDept[name];
+    const active = state.department === "Todos" || state.department === name;
+    const fill = row ? palette[row.cluster % palette.length] : "#d8dee7";
+    const path = node("path", { d: geometryPath(feature.geometry, project), fill, class: "map-department", tabindex: 0, opacity: active ? 0.96 : 0.25, "aria-label": `${name} cluster ${row ? row.cluster : "sin dato"}` });
+    const html = row ? `<b>${name} ${state.year}</b><br>Cluster ${row.cluster}<br>Tasa denuncias: ${fmt(row.denuncias_tasa_100k,1)}<br>Victimizacion: ${pct(row.victimizacion_pct)}<br>Percepcion: ${pct(row.percepcion_inseguridad_pct)}` : `<b>${name}</b><br>Sin dato modelado en el panel integrado`;
+    path.addEventListener("mousemove", e => showTip(e, html));
+    path.addEventListener("focus", e => showTip(e, html));
+    path.addEventListener("mouseleave", hideTip);
+    path.addEventListener("blur", hideTip);
+    svg.appendChild(path);
+    if (row && ["TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","ANCASH","ICA","TACNA","UCAYALI","LORETO","CUSCO","PUNO","AREQUIPA"].includes(name)) {
+      const [cx, cy] = project(centroid(feature.geometry));
+      svg.appendChild(node("text", { x: cx, y: cy, "text-anchor": "middle", class: "map-label" }, name.replace("LA LIBERTAD", "LIBERTAD")));
+    }
+  });
 }
 function drawScatter() {
   const el = document.querySelector("#scatter-chart"), svg = svgRoot(el, 560, 340), m = {left:54,right:18,top:18,bottom:46};
@@ -104,7 +151,7 @@ function populateControls() {
   document.querySelector("#department-select").innerHTML = `<option>Todos</option>` + [...new Set(panel.map(d=>d.departamento))].sort().map(d=>`<option>${d}</option>`).join("");
   document.querySelector("#cluster-filter").innerHTML = `<option>Todos</option>` + [...new Set(panel.map(d=>d.cluster))].sort().map(c=>`<option>${c}</option>`).join("");
 }
-function render() { drawTrend(); drawRanking(); drawScatter(); drawCluster(); drawModelMetrics(); drawImportance(); drawClusterTable(); }
+function render() { drawTrend(); drawRanking(); drawMap(); drawScatter(); drawCluster(); drawModelMetrics(); drawImportance(); drawClusterTable(); }
 function bind() {
   document.querySelector("#year-select").addEventListener("change", e=>{ state.year = Number(e.target.value); render(); });
   document.querySelector("#metric-select").addEventListener("change", e=>{ state.metric = e.target.value; render(); });
@@ -113,12 +160,13 @@ function bind() {
   document.querySelector("#reset-view").addEventListener("click", ()=>{ state.year=2024; state.metric="denuncias_tasa_100k"; state.department="Todos"; state.cluster="Todos"; populateControls(); render(); });
 }
 async function init() {
-  [panel, clusters, modelMetrics, importance, summary] = await Promise.all([
+  [panel, clusters, modelMetrics, importance, summary, peruGeo] = await Promise.all([
     text("data/processed/panel_con_clusters.csv").then(parseCSV),
     text("outputs/tables/cluster_profiles.csv").then(parseCSV),
     text("outputs/tables/classification_benchmark.csv").then(parseCSV),
     text("outputs/tables/classification_permutation_importance.csv").then(parseCSV),
     json("outputs/tables/analysis_summary.json"),
+    json("data/geo/peru_departamental_simple.geojson"),
   ]);
   importance.sort((a,b)=>b.importance_mean-a.importance_mean);
   const latest = summary.eda.by_year.find(d => d.anio === 2024);
@@ -129,5 +177,3 @@ async function init() {
   populateControls(); bind(); render(); window.addEventListener("resize", render);
 }
 init().catch(err => { document.body.insertAdjacentHTML("beforeend", `<pre class="load-error">No se pudieron cargar los datos del tablero: ${err.message}</pre>`); });
-
-
