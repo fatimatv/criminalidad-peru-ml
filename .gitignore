@@ -6,3 +6,6 @@ __pycache__/
 dist/
 
 .vercel
+node_modules/
+test-results/
+

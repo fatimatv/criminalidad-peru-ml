@@ -24,6 +24,7 @@ const directories = [
   "notebooks",
   "defense",
   "references",
+  "assets",
   "outputs/figures",
   "outputs/tables",
   "data/processed",
@@ -41,3 +42,4 @@ for (const directory of directories) {
     cpSync(source, join(dist, directory), { recursive: true });
   }
 }
+
